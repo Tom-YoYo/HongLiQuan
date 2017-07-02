@@ -1,0 +1,31 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'HongLiQuan' do  
+pod 'SDWebImage'
+pod 'AFNetworking'
+pod 'MJExtension'
+pod 'MJRefresh'
+pod 'MBProgressHUD'
+
+pod 'ShareSDK3'
+pod 'MOBFoundation'
+pod 'ShareSDK3/ShareSDKUI'
+pod 'ShareSDK3/ShareSDKPlatforms/QQ'
+pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
+pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
+
+pod 'ReactiveObjC'
+pod 'LLPaySDK'
+
+  target 'HongLiQuanTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'HongLiQuanUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

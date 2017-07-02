@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="161" id="KGk-i7-Jjw" customClass="YBFindCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="200.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXp-ob-3cy" customClass="YBHomeButton">
+                        <rect key="frame" x="0.0" y="0.0" width="106" height="201"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="201" id="u6a-li-PW2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" title="邀请有奖">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYf-0a-4jF" customClass="YBHomeButton">
+                        <rect key="frame" x="107" y="0.0" width="106" height="100"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="PBU-eB-fER"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" title="排行榜">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAy-1O-tmM" customClass="YBHomeButton">
+                        <rect key="frame" x="214" y="0.0" width="106" height="100"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="sIC-46-xFD"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" title="理财师">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="APS-ZR-usV" customClass="YBHomeButton">
+                        <rect key="frame" x="107" y="101" width="106" height="100"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="Z8a-2V-8Cf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" title="新手奖励">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ph6-hr-j4Q" customClass="YBHomeButton">
+                        <rect key="frame" x="214" y="101" width="106" height="100"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="JEx-mL-odq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" title="媒体报道">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="APS-ZR-usV" firstAttribute="top" secondItem="oYf-0a-4jF" secondAttribute="bottom" constant="1" id="0Xi-fe-p8h"/>
+                    <constraint firstItem="ph6-hr-j4Q" firstAttribute="leading" secondItem="APS-ZR-usV" secondAttribute="trailing" constant="1" id="9QL-oG-a2X"/>
+                    <constraint firstItem="oYf-0a-4jF" firstAttribute="width" secondItem="tXp-ob-3cy" secondAttribute="width" id="DFw-av-Omb"/>
+                    <constraint firstItem="oYf-0a-4jF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="KSh-LK-BGL"/>
+                    <constraint firstItem="ph6-hr-j4Q" firstAttribute="top" secondItem="eAy-1O-tmM" secondAttribute="bottom" constant="1" id="L8s-Td-dJU"/>
+                    <constraint firstItem="oYf-0a-4jF" firstAttribute="leading" secondItem="tXp-ob-3cy" secondAttribute="trailing" constant="1" id="Pcv-a6-KVG"/>
+                    <constraint firstAttribute="trailing" secondItem="eAy-1O-tmM" secondAttribute="trailing" id="XEm-NQ-ofQ"/>
+                    <constraint firstItem="APS-ZR-usV" firstAttribute="width" secondItem="tXp-ob-3cy" secondAttribute="width" id="ZTJ-lr-rXJ"/>
+                    <constraint firstItem="eAy-1O-tmM" firstAttribute="leading" secondItem="oYf-0a-4jF" secondAttribute="trailing" constant="1" id="Zsl-n0-oEE"/>
+                    <constraint firstItem="ph6-hr-j4Q" firstAttribute="width" secondItem="tXp-ob-3cy" secondAttribute="width" id="buF-OY-h5K"/>
+                    <constraint firstAttribute="bottom" secondItem="tXp-ob-3cy" secondAttribute="bottom" constant="-0.5" id="cNI-SU-S2l"/>
+                    <constraint firstItem="APS-ZR-usV" firstAttribute="leading" secondItem="tXp-ob-3cy" secondAttribute="trailing" constant="1" id="gfX-8I-Kyx"/>
+                    <constraint firstItem="tXp-ob-3cy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ie5-cU-hnS"/>
+                    <constraint firstItem="tXp-ob-3cy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jK5-Fe-UL8"/>
+                    <constraint firstItem="eAy-1O-tmM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="nxB-yr-bw1"/>
+                    <constraint firstAttribute="trailing" secondItem="ph6-hr-j4Q" secondAttribute="trailing" id="qJy-hX-fAJ"/>
+                    <constraint firstItem="eAy-1O-tmM" firstAttribute="width" secondItem="tXp-ob-3cy" secondAttribute="width" id="wxV-mT-EZR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <point key="canvasLocation" x="61" y="113"/>
+        </tableViewCell>
+    </objects>
+</document>

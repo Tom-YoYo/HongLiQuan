@@ -1,0 +1,195 @@
+//
+//  YBAPNSTool.m
+//  XHGY_client
+//
+//  Created by 尚往文化 on 17/4/24.
+//  Copyright © 2017年 YBing. All rights reserved.
+//
+
+#import "YBAPNSTool.h"
+#import "UserManager.h"
+#import "YCFriendsterDetailController.h"
+#import "YCAllFruitController.h"   //果实增加
+#import "YCFruitController.h"      //我的果实
+#import "YCFruitDetialController.h"
+#import "BuyBackDetailController.h"//我的礼品详情
+#import "YCJSController.h"
+#import "NSUserDefaults+Extension.h"
+#import "MyLowerLevelController.h"
+
+@implementation YBAPNSTool
+
++ (void)unregistJPUSH
+{
+     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+}
+
++ (void)registJPUSH:(NSDictionary *)launchOptions
+{
+     //Required
+     //notice: 3.0.0及以后版本注册可以这样写，也可以继续用之前的注册方式
+     JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+     entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+          // 可以添加自定义categories
+          // NSSet<UNNotificationCategory *> *categories for iOS10 or later
+          // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
+     }
+     [JPUSHService registerForRemoteNotificationConfig:entity delegate:[UIApplication sharedApplication].delegate];
+     
+     // Optional
+     // 获取IDFA
+     // 如需使用IDFA功能请添加此代码并在初始化方法的advertisingIdentifier参数中填写对应值
+     //     NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+     
+     // Required
+     // init Push
+     // notice: 2.1.5版本的SDK新增的注册方法，改成可上报IDFA，如果没有使用IDFA直接传nil
+     // 如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
+     [JPUSHService setupWithOption:launchOptions appKey:kJPUSHAppKey
+                           channel:nil
+                  apsForProduction:YES];
+     //2.1.9版本新增获取registration id block接口。
+     [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
+          if(resCode == 0){
+               YBLog(@"registrationID:==%@",registrationID);
+               if ([self isUpdateRegistrationID:registrationID]) {
+                    //更新RegistrationId
+                    [YBHttpTool updateRegistrationID];
+               }
+          }
+          else{
+               YBLog(@"registrationID获取失败，code：%d",resCode);
+          }
+     }];
+}
+
++ (BOOL)isUpdateRegistrationID:(NSString *)currentRegistrationID
+{
+     if (!currentRegistrationID.length) return NO;
+     //判断是否是登录状态
+     UserManager *manager = [UserManager sharedManager];
+     if (manager.user.ticket.length) {
+          NSString *localRegistrationID = [NSUserDefaults getObjectForKey:kJPushRegistrationID];
+          //判断ID是否与本地的一致
+          if (![localRegistrationID isEqualToString:currentRegistrationID]) {
+               return YES;
+          }
+     }
+     return NO;
+}
+
+/*
+ 0 公告  --  web页面
+ 1 朋友圈评论 -- 朋友圈详情
+ 2 朋友圈点赞 -- 朋友圈详情
+ 3 新的下级  -- 我的下级页面
+ 4 下级消费  -- 我的果实－推荐激励
+ 5 收益发放 -- 我的果实详情
+ 6 打款  ---  我的礼品详情
+ 7 发货 ----  我的礼品详情
+ 8 只是告诉下有人消费过5w，不需要跳转
+ 9 有人@你 --- 朋友圈详情
+ */
++ (void)handlePush:(NSDictionary *)userInfo
+{
+     UINavigationController *nav = [self getCurrentNav];
+     NSInteger t = [userInfo[@"t"] integerValue];//类型
+     id i = userInfo[@"i"];//参数
+     switch (t) {
+               
+          case 0://富文本详情
+          {
+               YCJSController *jsVC = [YCJSController new];
+               NSString *urlstr = [NSString stringWithFormat:@"%@noticeDetail.html?id=%@",kHTML_URL,i];
+               jsVC.url = urlstr;
+               [nav pushViewController:jsVC animated:YES];
+               break;
+          }
+          case 1://评论
+          case 2:
+          {
+               YCFriendsterDetailController *detailVC = [YCFriendsterDetailController new];
+               detailVC.sid = [i integerValue];
+               [nav pushViewController:detailVC animated:YES];
+               break;
+          }
+          case 3:
+          {
+               MyLowerLevelController *myllVC = [MyLowerLevelController new];
+               [nav pushViewController:myllVC animated:YES];
+               break;
+          }
+               
+          case 4://我的果实－推荐激励
+          {
+
+               YCFruitController *fruitVC = [YCFruitController new];
+               fruitVC.selectIndex = 2;
+               if ([fruitVC respondsToSelector:@selector(segment)]) {
+                    UISegmentedControl *segmentedCtl = [fruitVC valueForKey:@"segment"];
+                    //调用选中控制器内部方法
+                    [fruitVC performSelector:@selector(segmentClick)];
+                    [nav pushViewController:fruitVC animated:YES];
+               }
+               
+               break;
+          }
+          case 5://我的果实详情
+          {
+               YCAllFruitController *fruitVC = [YCAllFruitController new];
+               fruitVC.ID = [i integerValue];
+//               YCFruitDetialController *detailVC = [YCFruitDetialController new];
+//               detailVC.ID = [i integerValue];
+               [nav pushViewController:fruitVC animated:YES];
+               break;
+          }
+          case 6://我的礼品详情
+          case 7:
+          {
+               BuyBackDetailController *detailVC = [BuyBackDetailController new];
+               detailVC.backid = i;
+               [nav pushViewController:detailVC animated:YES];
+               break;
+          }
+          case 8:{}  //只是告诉下有人消费过5w，不需要跳转
+               break;
+          case 9: //朋友圈详情
+          {
+               YCFriendsterDetailController *detailVC = [YCFriendsterDetailController new];
+               detailVC.sid = [i integerValue];
+               [nav pushViewController:detailVC animated:YES];
+          }
+               break;
+     }
+}
+
++ (UINavigationController *)getCurrentNav
+{
+     UIApplication *application = [UIApplication sharedApplication];
+     UIWindow *window = [application.windows firstObject];
+     UIViewController *rootVC = window.rootViewController;
+     if ([rootVC isKindOfClass:[UITabBarController class]]) {//已经登陆
+          UITabBarController *tabbarVC = (UITabBarController *)rootVC;
+          return tabbarVC.selectedViewController;
+     } else {//还没有登陆
+          if ([rootVC isKindOfClass:[UINavigationController class]]) {
+               return (UINavigationController *)rootVC;
+          }
+     }
+     return nil;
+}
+
++ (void)handleAPNS:(NSDictionary *)userInfo
+{
+     if ([UserManager sharedManager].user.ticket.length==0) return;
+     UIApplicationState applicationState = [UIApplication sharedApplication].applicationState;
+     // 应用正处理前台状态下，不会收到推送消息，因此在此处需要额外处理
+     if (applicationState == UIApplicationStateActive) {
+          [kNotificationCenter postNotificationName:kReceiveRemoteNotification object:nil];
+     } else if (applicationState == UIApplicationStateInactive) {
+          [self handlePush:userInfo];
+     }
+}
+
+@end

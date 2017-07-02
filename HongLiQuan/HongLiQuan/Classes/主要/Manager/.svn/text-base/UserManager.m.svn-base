@@ -1,0 +1,90 @@
+//
+//  UserManager.m
+//  Wanyingjinrong
+//
+//  Created by Jason on 15/11/13.
+//  Copyright © 2015年 www.jizhan.com. All rights reserved.
+//
+
+#import "UserManager.h"
+#import "Define.h"
+#import "YBHttpTool.h"
+#import "UITabBar+badge.h"
+
+@class YCMyController;
+@implementation UserManager
+
+- (YBAppConfig *)appConfig
+{
+    if (_appConfig==nil) {
+        _appConfig = [YBAppConfig new];
+        /*
+         nonetworkPic	无网络图标
+         nocontentPic	无内容图标
+         launchPic	启动图
+         characterColor	文字颜色
+         loadingPic	loading图
+         iconColor	颜色
+         navigationBarColor	导航栏颜色
+         */
+        _appConfig.launchPic = kDefaultAppConfig_launchPic;
+        _appConfig.characterColor = kDefaultAppConfig_characterColor;
+        _appConfig.iconColor = kDefaultAppConfig_iconColor;
+        _appConfig.navigationBarColor = kDefaultAppConfig_navigationBarColor;
+        _appConfig.nonetworkPic = kDefaultAppConfig_nonetworkPic;
+        _appConfig.nocontentPic = kDefaultAppConfig_nocontentPic;
+        _appConfig.loadingPic = kDefaultAppConfig_loadingPic;
+    }
+    return _appConfig;
+}
+
+- (void)setIsUnreadMsg:(BOOL)isUnreadMsg
+{
+     _isUnreadMsg = isUnreadMsg;
+     
+     UIViewController *rootVC = [[UIApplication sharedApplication].windows firstObject].rootViewController;
+     if ([rootVC isKindOfClass:[UITabBarController class]]) {
+          UITabBarController *tabbar = (UITabBarController *)rootVC;
+          if (isUnreadMsg) {
+               [tabbar.tabBar showBadgeOnItmIndex:4];
+          } else {
+               [tabbar.tabBar hideBadgeOnItemIndex:4];
+          }
+          
+          if (tabbar.selectedIndex==4) {
+               UINavigationController *nav = tabbar.selectedViewController;
+               UIViewController *vc = [nav.viewControllers firstObject];
+               if ([vc respondsToSelector:@selector(badgeView)]) {
+                    [vc setValue:@(!isUnreadMsg) forKeyPath:@"badgeView.hidden"];
+               }
+          }
+     }
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        User *user = [User new];
+        self.user = user;
+    }
+    return self;
+}
+
++ (UserManager *)sharedManager {
+    static dispatch_once_t once;
+    static id instance;
+    dispatch_once(&once, ^{
+        instance = [self new];
+    });
+    return instance;
+}
+
++ (NSInteger)userid
+{
+    UserManager *manager = [UserManager sharedManager];
+    
+    return manager.user.userid;
+}
+
+@end

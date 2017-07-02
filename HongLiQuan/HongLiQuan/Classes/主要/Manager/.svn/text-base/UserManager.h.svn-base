@@ -1,0 +1,41 @@
+//
+//  UserManager.h
+//  Wanyingjinrong
+//
+//  Created by Jason on 15/11/13.
+//  Copyright © 2015年 www.jizhan.com. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "User.h"
+#import "YBBarButtonItem.h"
+#import <CoreLocation/CoreLocation.h>
+
+@interface UserManager : NSObject
+
+@property (nonatomic, strong) User *user;
+
+
+/**
+ 是否已经弹出提示框
+ */
+@property (nonatomic, assign) BOOL isAlert;
+
+
+/**
+ 是否显示登录界面
+ */
+@property (nonatomic, assign) BOOL isShowLoginVC;
+
+@property (nonatomic, strong) CLLocation *currentLocation;
+
+@property (nonatomic, strong) YBAppConfig *appConfig;
+
+
+@property (nonatomic, assign) BOOL isUnreadMsg;//是否有未读消息
+
++ (NSInteger)userid;
+
++ (UserManager *)sharedManager;
+
+@end

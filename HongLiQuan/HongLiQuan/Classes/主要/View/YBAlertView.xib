@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YBAlertView">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cXO-Ka-Tch">
+                    <rect key="frame" x="60" y="8" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="5AX-0Z-nUv"/>
+                        <constraint firstAttribute="width" constant="80" id="XZl-IJ-hqD"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="88M-iP-ZLV">
+                    <rect key="frame" x="0.0" y="156" width="100" height="44"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="fY4-wb-mlt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="取消">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dw1-qj-QQQ">
+                    <rect key="frame" x="100" y="156" width="100" height="44"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="T4i-eo-fi4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tcm-Te-958">
+                    <rect key="frame" x="0.0" y="156" width="200" height="44"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="XNn-sy-QDB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您已领取过红包您已领取过红包您已领取过红包" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q15-gJ-4lB">
+                    <rect key="frame" x="16" y="102" width="168" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="bGo-bg-cie"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="q15-gJ-4lB" secondAttribute="trailing" constant="16" id="41c-7N-GaW"/>
+                <constraint firstAttribute="trailing" secondItem="dw1-qj-QQQ" secondAttribute="trailing" id="4XE-oP-VGG"/>
+                <constraint firstItem="Tcm-Te-958" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8SQ-Jr-feE"/>
+                <constraint firstAttribute="trailing" secondItem="Tcm-Te-958" secondAttribute="trailing" id="8kC-am-ihN"/>
+                <constraint firstItem="cXO-Ka-Tch" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Muk-Zk-Fbd"/>
+                <constraint firstItem="dw1-qj-QQQ" firstAttribute="width" secondItem="88M-iP-ZLV" secondAttribute="width" id="Xj0-xy-pC7"/>
+                <constraint firstItem="q15-gJ-4lB" firstAttribute="top" secondItem="cXO-Ka-Tch" secondAttribute="bottom" constant="14" id="b5P-i8-WcN"/>
+                <constraint firstAttribute="bottom" secondItem="Tcm-Te-958" secondAttribute="bottom" id="egC-Mv-nUe"/>
+                <constraint firstItem="88M-iP-ZLV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ifj-u2-h9z"/>
+                <constraint firstAttribute="bottom" secondItem="dw1-qj-QQQ" secondAttribute="bottom" id="lvr-gj-C9n"/>
+                <constraint firstItem="dw1-qj-QQQ" firstAttribute="leading" secondItem="88M-iP-ZLV" secondAttribute="trailing" id="ofi-H9-Vc0"/>
+                <constraint firstAttribute="bottom" secondItem="88M-iP-ZLV" secondAttribute="bottom" id="rKm-le-1Je"/>
+                <constraint firstItem="cXO-Ka-Tch" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="u1i-tW-PG8"/>
+                <constraint firstItem="q15-gJ-4lB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="vdg-ov-Xx2"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="allBtn" destination="Tcm-Te-958" id="htQ-j0-mU9"/>
+                <outlet property="imgView" destination="cXO-Ka-Tch" id="Rb9-1c-lRs"/>
+                <outlet property="leftBtn" destination="88M-iP-ZLV" id="XXK-Nb-XSP"/>
+                <outlet property="msgLabel" destination="q15-gJ-4lB" id="KoT-br-2vf"/>
+                <outlet property="rightBtn" destination="dw1-qj-QQQ" id="2Rd-sw-vZW"/>
+            </connections>
+            <point key="canvasLocation" x="61" y="58"/>
+        </view>
+    </objects>
+</document>

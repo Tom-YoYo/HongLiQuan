@@ -1,0 +1,35 @@
+//
+//  YBAPNSTool.h
+//  XHGY_client
+//
+//  Created by 尚往文化 on 17/4/24.
+//  Copyright © 2017年 YBing. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+
+
+// 引入JPush功能所需头文件
+#import "JPUSHService.h"
+// iOS10注册APNs所需头文件
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
+
+#define kJPUSHAppKey @"6f54513ae7b6a46fcfa5825b"
+
+@interface YBAPNSTool : NSObject
+
+//处理推送消息
++ (void)handleAPNS:(NSDictionary *)userInfo;
+
+//注册推送
++ (void)registJPUSH:(NSDictionary *)launchOptions;
+//关闭推送
++ (void)unregistJPUSH;
+
+//跳转页面(给消息列表使用方法)
++ (void)handlePush:(NSDictionary *)userInfo;
+
+@end

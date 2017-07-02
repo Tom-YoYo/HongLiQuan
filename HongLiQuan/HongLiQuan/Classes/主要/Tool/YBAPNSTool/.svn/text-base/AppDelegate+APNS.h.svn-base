@@ -1,0 +1,20 @@
+//
+//  AppDelegate+APNS.h
+//  XHGY_client
+//
+//  Created by 尚往文化 on 17/4/24.
+//  Copyright © 2017年 YBing. All rights reserved.
+//
+
+#import "AppDelegate.h"
+
+// 引入JPush功能所需头文件
+#import "JPUSHService.h"
+// iOS10注册APNs所需头文件
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
+
+@interface AppDelegate (APNS)<JPUSHRegisterDelegate>
+
+@end
